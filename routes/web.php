@@ -12,5 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'],function(){
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/', 'StoreController@index')->name('index');
+        Route::group(['prefix' => 'store'], function () {
+            Route::get('create', 'StoreController@getAdd')->name('store.getAdd');
+            Route::post('create', 'StoreController@postAdd')->name('store.postAdd');
+        });
+    });
 });
