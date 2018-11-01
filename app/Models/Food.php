@@ -16,8 +16,8 @@ class Food extends Model
         'rating',
         'size',
         'image',
-        'image_detail',
         'promotion_id',
+        'type_id',
         'category_id',
     ];
     public $timestamps = false;
@@ -30,6 +30,11 @@ class Food extends Model
     public function promotion()
     {
         return $this->belongsTo(Promotion::class);
+    }
+
+    public function foodType()
+    {
+        return $this->belongsTo(FoodType::class);
     }
 
     public function orderFood()
@@ -45,5 +50,10 @@ class Food extends Model
     public function comment()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function foodDetail()
+    {
+        return $this->hasMany(FoodDetail::class);
     }
 }

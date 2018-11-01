@@ -14,6 +14,7 @@ class Store extends Model
         'phone',
         'description',
         'avatar',
+        'workspace_id',
     ];
     public $timestamps = false;
 
