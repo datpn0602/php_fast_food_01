@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -19,7 +20,10 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'confirm_password',
+        'avatar',
         'phone',
+        'birthday',
         'address',
         'level',
     ];
@@ -33,6 +37,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    protected $dates = ['deleted_at'];
 
     public function comment()
     {
@@ -41,6 +46,6 @@ class User extends Authenticatable
 
     public function userRole()
     {
-        return $this->hasMany('App\Models\UserRole', 'user_id');
+        return $this->hasMany(UserRole::class);
     }
 }

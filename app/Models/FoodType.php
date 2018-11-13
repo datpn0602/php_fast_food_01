@@ -3,17 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class FoodType extends Model
 {
-    protected $table = 'categories';
+    protected $table = 'food_types';
     protected $fillable = [
         'id',
         'name',
         'description',
     ];
-    protected $dates = ['deleted_at'];
     public $timestamps = false;
 
     public function food()

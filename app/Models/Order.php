@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
@@ -15,8 +16,10 @@ class Order extends Model
         'description',
         'status',
         'date',
-        'restaurant_id',
+        'store_id',
+        'user_id',
     ];
+    protected $dates = ['deleted_at'];
     public $timestamps = false;
 
     public function store()

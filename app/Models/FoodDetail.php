@@ -4,14 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class FoodDetail extends Model
 {
-    protected $table = 'comments';
+    protected $table = 'food_details';
     protected $fillable = [
         'id',
-        'content',
-        'date',
-        'user_id',
+        'image',
         'food_id',
     ];
     public $timestamps = false;
@@ -19,10 +17,5 @@ class Comment extends Model
     public function food()
     {
         return $this->belongsTo(Food::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }
