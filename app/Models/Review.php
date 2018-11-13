@@ -4,20 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderFood extends Model
+class Review extends Model
 {
-    protected $table = 'order_food';
+    protected $table = 'reviews';
     protected $fillable = [
         'id',
-        'quantity',
-        'price',
+        'rating',
+        'content',
         'food_id',
-        'order_id',
+        'user_id',
     ];
     public $timestamps = false;
 
     public function food()
     {
-        return $this->belongsTo(Food::class)->withTrashed();
+        return $this->belongTo(Food::class);
     }
 }

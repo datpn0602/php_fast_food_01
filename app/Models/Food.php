@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Food extends Model
 {
@@ -16,10 +17,10 @@ class Food extends Model
         'rating',
         'size',
         'image',
-        'image_detail',
         'promotion_id',
-        'category_id',
+        'type_id',
     ];
+    protected $dates = ['deleted_at'];
     public $timestamps = false;
 
     public function category()
@@ -30,6 +31,11 @@ class Food extends Model
     public function promotion()
     {
         return $this->belongsTo(Promotion::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(FoodType::class);
     }
 
     public function orderFood()
@@ -45,5 +51,15 @@ class Food extends Model
     public function comment()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function foodDetail()
+    {
+        return $this->hasMany(FoodDetail::class);
     }
 }
